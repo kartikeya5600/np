@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Khushboo's Special Page</title>
+  <style>
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-10vh); opacity: 0; }
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(-45deg, #ffdde1, #ee9ca7, #fad0c4, #fbc2eb);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    .emoji-container {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 24px;
+      animation: floatUp linear infinite;
+    }
+
+    td {
+      padding: 15px;
+      text-align: center;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    td:hover {
+      background-color: #ffb6c1;
+      cursor: pointer;
+    }
+
+    .special {
+      background-color: #ff69b4;
+      color: white;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Emojis -->
+  <div class="emoji-container" id="emojiContainer"></div>
+
+  <!-- Container -->
+  <div style="max-width: 800px; margin: 60px auto; box-shadow: 0 8px 16px rgba(0,0,0,0.3); border-radius: 15px; background-color: white; overflow: hidden; position: relative; z-index: 1;">
+
+    <!-- Navigation -->
+    <div style="background-color: #ff69b4; overflow: hidden;">
+      <a href="#" onclick="showSection('message')" style="float: left; color: white; text-align: center; padding: 14px 16px; text-decoration: none; font-weight: bold;">Message</a>
+      <a href="#" onclick="showSection('calendar')" style="float: left; color: white; text-align: center; padding: 14px 16px; text-decoration: none; font-weight: bold;">Calendar</a>
+      <a href="#" onclick="showSection('secret')" style="float: left; color: white; text-align: center; padding: 14px 16px; text-decoration: none; font-weight: bold;">Secret</a>
+    </div>
+
+    <!-- Message -->
+    <div id="message" style="display: none; padding: 60px 30px; text-align: center; background-color: #ffe4e1;">
+      <h1 style="color: #c71585;">Hi Khushboo! 💖</h1>
+      <p style="font-size: 20px; color: #333;">hello bby I LOVE YOU SO MUCH 💖 kya hi batau aapko sahi m jab se aap meri lyf m aaye ho har chiz achhi lagne lagi hai mujhe aur m bata nahi sakta ki m kitna khush hu ki aapne mujhe accept kiya as you partner aur ab toh mujhe har jaga aap hi dikhte ho kya bolu bas aur wait nahi hota aapke paass aana hai mujhe jaldi se sath m job karni hai taki sath m time spend kar sake aur stable hote hi shadi karni hai aapke sath bby.</p>
+    </div>
+
+    <!-- Calendar -->
+    <div id="calendar" style="display: none; padding: 60px 30px; text-align: center; background-color: #e6f2ff;">
+      <h2 style="color: #003366;">📅 May 2024</h2>
+      <table style="margin: auto; font-size: 18px;">
+        <tr style="color: #ff1493;">
+          <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+        </tr>
+        <tr>
+          <td></td><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td>
+        </tr>
+        <tr>
+          <td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td onclick="showLove()" class="special">13</td>
+          <td>14</td><td>15</td><td>16</td><td>17</td><td>18</td>
+        </tr>
+        <tr>
+          <td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td>
+        </tr>
+        <tr>
+          <td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td>
+        </tr>
+      </table>
+      <p id="loveMsg" style="margin-top: 30px; font-size: 20px; color: #ff1493;"></p>
+    </div>
+
+    <!-- Secret Message -->
+    <div id="secret" style="display: none; padding: 60px 30px; text-align: center; background-color: #fff0f5;">
+      <h2 style="color: #8b0000;">💋 Secret</h2>
+      <button 
+        onclick="revealSecret()" 
+        style="padding: 12px 25px; font-size: 20px; background-color: #ff69b4; color: white; border: none; border-radius: 10px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+        Kiss Me 💋
+      </button>
+      <p id="secretMsg" style="font-size: 20px; color: #d63384; margin-top: 20px;"></p>
+
+      <!-- Hidden image shown on click -->
+       <img id="kissImage" 
+     src="imgkk.jpg" 
+     alt="Kiss Image from Drive"
+     style="display: none;margin-left: 250px; margin-top: 20px; width: 250px; border-radius: 15px; box-shadow: 0 0 12px pink;">
+    </div>
+
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    function showSection(sectionId) {
+      document.getElementById("message").style.display = "none";
+      document.getElementById("calendar").style.display = "none";
+      document.getElementById("secret").style.display = "none";
+      document.getElementById(sectionId).style.display = "block";
+    }
+
+    function revealSecret() {
+      document.getElementById("secretMsg").innerText = "love you so much khushboo meri jaan 😘💖";
+      document.getElementById("kissImage").style.display = "block";
+    }
+
+    function showLove() {
+      document.getElementById("loveMsg").innerText = "is din aap meri ho gayi thi hamesha ke liye ❤️ aur umeed karte hu ki aap hamesha meri hi rahogi";
+    }
+
+    function createFloatingEmojis() {
+      const container = document.getElementById("emojiContainer");
+      for (let i = 0; i < 20; i++) {
+        const emoji = document.createElement("span");
+        emoji.classList.add("emoji");
+        emoji.innerText = "🤗";
+        emoji.style.left = Math.random() * 100 + "vw";
+        emoji.style.animationDuration = 5 + Math.random() * 5 + "s";
+        emoji.style.fontSize = (20 + Math.random() * 20) + "px";
+        container.appendChild(emoji);
+      }
+    }
+
+    // Run on load
+    createFloatingEmojis();
+    showSection('message');
+  </script>
+
+</body>
+</html>
